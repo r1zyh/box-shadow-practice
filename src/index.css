@@ -1,0 +1,363 @@
+@font-face {
+  font-family: 'Inter 18pt';
+  src: url('/public/assets/Inter18pt-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter 18pt';
+  src: url('/public/assets/Inter18pt-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #B8C7D9;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 250px;
+  height: 550px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/*header title + settings*/
+
+.header__block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 400;
+  color: #687585;
+}
+
+.settings {
+  width: 40px;
+  height: 40px; 
+  border-radius: 50%;
+  border-color: transparent; 
+  box-shadow: 
+  -15px 4px 20px hsl(213 30% 79% / 0.6),
+  0px -6px 20px rgba(0, 0, 0, 0.15),    
+  15px 10px 25px hsl(213 30% 79% / 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: hsl(213, 30%, 79%);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  align-self: center;
+}
+
+.settings.active {
+  background-color: #e6f0ff;
+  box-shadow: 
+    inset -3px -3px 6px hsl(213 30% 95%),
+    inset 3px 3px 6px hsl(213 30% 70%);
+  color: #4A90E2;
+}
+
+
+/*main clock*/
+
+.clock {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.clock__outer.alarm {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-shadow: 
+  -10px 4px 15px rgba(0, 0, 0, 0.1),  
+  0px -6px 20px rgba(0, 0, 0, 0.15),   
+  25px 10px 25px hsl(213 30% 79% / 0.6);
+  border-radius: 50%;
+}
+
+.clock__inner.alarm {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50px;
+  right: 50px;
+  box-shadow: 
+  -10px 4px 15px hsl(213 30% 79% / 0.6),
+  0px -6px 20px rgba(0, 0, 0, 0.15),   
+  25px 10px 25px hsl(213 30% 79% / 0.6);
+  border-radius: 50%;
+}
+
+.clock__outer.lap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-shadow: 
+    -10px 4px 15px rgba(0, 0, 0, 0.1),  
+    0px -6px 20px rgba(0, 0, 0, 0.15),   
+    25px 10px 25px hsl(213 30% 79% / 0.6);
+  border-radius: 50%;
+  outline: 2px dotted #687585;
+  outline-offset: -10px;
+}
+
+.clock__inner.lap {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock__time {
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: bold;
+  top: 85px;
+  right: 35px;
+  color: #333;
+}
+
+/* Стрелки часов */
+.hand {
+  position: absolute;
+  width: 2px;
+  background-color: black;
+  transform-origin: bottom;
+  bottom: 50%;
+  left: 50%;
+}
+
+.hour {
+  height: 40px;
+  background-color: #333;
+}
+
+.minute {
+  height: 60px;
+  background-color: gray;
+}
+
+.second {
+  height: 70px;
+  background-color: red;
+}
+
+
+/*alarm clock list witch checkboxes*/
+
+.alarm__clock {
+  margin: 20px 20px ;
+  list-style: none;
+  padding: 0;
+}
+
+.alarm__clock--item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  border-radius: 10px;
+  height: 35px;
+  box-shadow: 3px 4px 10px 4px #B8C7D9;
+}
+
+.alarm__clock--item > :last-child {
+  margin-left: auto; 
+  margin-right: 10px; 
+}
+
+.time {
+  margin-left: 15px;
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.time__period {
+  font-size: 1.2rem;
+  font-weight: normal;
+  align-self: flex-start;
+  color: gray;
+}
+
+.toggler {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.toggler__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggler__slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccd6e0;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.toggler__slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggler__input:checked + .toggler__slider {
+  background-color: #9ab3ca;
+}
+
+.toggler__input:checked + .toggler__slider::before {
+  transform: translateX(20px);
+  background-color: #567492;
+}
+
+.lap {
+  font-size: 1.2rem;
+}
+
+.lap__number {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.lap__name {
+  font-size: 0.9rem;
+  color: rgb(161, 173, 180);
+}
+
+.lap__details {
+  width: 60px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+/*footer (options)*/
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.options__button {
+  padding: 5px 5px;
+  border-color: transparent;
+  border-radius: 10px; 
+  box-shadow: 
+  -15px 4px 20px hsl(213 30% 79% / 0.6),
+  0px -6px 20px rgba(0, 0, 0, 0.15),    
+  15px 10px 25px hsl(213 30% 79% / 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #B8C7D9;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  align-self: center;
+}
+
+.option__item.active .options__button {
+  background-color: #e6f0ff; 
+  box-shadow: 
+    inset -3px -3px 6px hsl(213 30% 95%),
+    inset 3px 3px 6px hsl(213 30% 70%);
+  color: #4A90E2; 
+}
+
+/*.test1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.test2 {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  background-color: white;
+  box-shadow: 
+  inset -5px -5px 40px -10px black,
+  inset 5px -5px 40px -10px black,
+  inset -5px 5px 40px -10px black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.test3 {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  box-shadow: 
+  inset 5px 5px 15px  black, 
+  inset -5px -5px 15px  black;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.test2.active {
+ box-shadow:   5px 5px 15px  black, 
+   -5px -5px 15px  black;
+   border-radius: 10px;
+}
+.test3.active {
+  box-shadow:   5px 5px 15px  black, 
+   -5px -5px 15px  black;
+   border-radius: 20px;
+}
+*/
